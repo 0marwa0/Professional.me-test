@@ -97,7 +97,7 @@ src/
 1. **Clone the repository**
    ```bash
    git clone https://github.com/0marwa0/Professional.me-test.git
-   cd my-next-app
+   cd Professional.me-test
    ```
 
 2. **Install dependencies**
