@@ -12,10 +12,13 @@ import { useBooks } from "@/contexts/BookContext";
 
 // Define the form data type that matches our schema
 type FormData = {
-  title: string;
-  author: string;
+  title_en: string;
+  title_ar: string;
+  title_fr: string;
+  author_en: string;
+  author_ar: string;
+  author_fr: string;
   price: string;
-
 };
 
 export default function BookForm() {
@@ -32,8 +35,12 @@ export default function BookForm() {
   } = useForm<FormData>({
     resolver: zodResolver(createBookSchema(locale)) as any,
     defaultValues: {
-      title: "",
-      author: "",
+      title_en: "",
+      title_ar: "",
+      title_fr: "",
+      author_en: "",
+      author_ar: "",
+      author_fr: "",
       price: "",
     },
   });
@@ -41,9 +48,17 @@ export default function BookForm() {
   const onSubmit = async (data: FormData) => {
     try {
       await addBook({
-        title: data.title,
-        author: data.author,
-        price: Number(data.price), // Ensure price is a number
+        title: {
+        en: data.title_en,
+        ar: data.title_ar,
+        fr: data.title_fr
+      },
+      author: {
+        en: data.author_en,
+        ar: data.author_ar,
+        fr: data.author_fr
+      },
+        price: Number(data.price),
       });
       reset();
       router.push("/");
@@ -53,28 +68,78 @@ export default function BookForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 ">
-      {/* Title */}
-      <div className="space-x-6">
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      {/* English Title */}
+      <div>
         <input
-          {...register("title")}
-          placeholder={t("Title")}
+          {...register("title_en", { required: "English title is required" })}
+          placeholder="Title (English)"
           className="w-full p-2 border rounded bg-transparent"
         />
-        {errors.title && (
-          <p className="text-red-500 text-sm">{errors.title.message}</p>
+        {errors.title_en && (
+          <p className="text-red-500 text-sm">{errors.title_en.message}</p>
         )}
       </div>
 
-      {/* Author */}
+      {/* Arabic Title */}
       <div>
         <input
-          {...register("author")}
-          placeholder={t("Author")}
-          className="w-full p-2 border  rounded bg-transparent"
+          {...register("title_ar", { required: "Arabic title is required" })}
+          placeholder="العنوان (العربية)"
+          className="w-full p-2 border rounded bg-transparent text-right"
+          dir="rtl"
         />
-        {errors.author && (
-          <p className="text-red-500 text-sm">{errors.author.message}</p>
+        {errors.title_ar && (
+          <p className="text-red-500 text-sm">{errors.title_ar.message}</p>
+        )}
+      </div>
+
+      {/* French Title */}
+      <div>
+        <input
+          {...register("title_fr", { required: "French title is required" })}
+          placeholder="Titre (Français)"
+          className="w-full p-2 border rounded bg-transparent"
+        />
+        {errors.title_fr && (
+          <p className="text-red-500 text-sm">{errors.title_fr.message}</p>
+        )}
+      </div>
+
+      {/* English Author */}
+      <div>
+        <input
+          {...register("author_en", { required: "English author name is required" })}
+          placeholder="Author (English)"
+          className="w-full p-2 border rounded bg-transparent"
+        />
+        {errors.author_en && (
+          <p className="text-red-500 text-sm">{errors.author_en.message}</p>
+        )}
+      </div>
+
+      {/* Arabic Author */}
+      <div>
+        <input
+          {...register("author_ar", { required: "Arabic author name is required" })}
+          placeholder="اسم المؤلف (العربية)"
+          className="w-full p-2 border rounded bg-transparent text-right"
+          dir="rtl"
+        />
+        {errors.author_ar && (
+          <p className="text-red-500 text-sm">{errors.author_ar.message}</p>
+        )}
+      </div>
+
+      {/* French Author */}
+      <div>
+        <input
+          {...register("author_fr", { required: "French author name is required" })}
+          placeholder="Auteur (Français)"
+          className="w-full p-2 border rounded bg-transparent"
+        />
+        {errors.author_fr && (
+          <p className="text-red-500 text-sm">{errors.author_fr.message}</p>
         )}
       </div>
 

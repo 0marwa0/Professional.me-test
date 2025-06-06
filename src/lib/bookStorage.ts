@@ -1,13 +1,13 @@
 import { staticBooks } from "@/app/[locale]/books/data";
+import { LocalizedString } from "@/types/book";
 
 const BOOKS_STORAGE_KEY = 'bookLibrary_books';
 
 export interface Book {
   id: string;
-  title: string;
-  author: string;
+  title: LocalizedString;
+  author: LocalizedString;
   price: number;
- 
 }
 
 // Generate a unique ID for books
