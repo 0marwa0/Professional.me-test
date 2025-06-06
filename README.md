@@ -96,7 +96,7 @@ src/
 
 1. **Clone the repository**
    ```bash
-   git clone [your-repository-url]
+   git clone https://github.com/0marwa0/Professional.me-test.git
    cd my-next-app
    ```
 
