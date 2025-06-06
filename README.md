@@ -2,6 +2,10 @@
 
 A modern, responsive web application for managing a book collection with full multilingual support. Built with Next.js and TypeScript, this application allows users to add, view, and manage books in multiple languages.
 
+## 🌐 Live Demo
+
+Check out the live demo: [https://professional-me-test-7yay32ctr-marwa-s-projects-ea57588c.vercel.app/en](https://professional-me-test-7yay32ctr-marwa-s-projects-ea57588c.vercel.app/en)
+
 ## 🚀 Features
 
 - 📚 Add and manage books with details in multiple languages
