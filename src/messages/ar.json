@@ -3,16 +3,5 @@
   "addBook": "إضافة كتاب",
   "Title": "العنوان",
   "Price": "السعر",
-  "Author": "المؤلف",
-  "Description": "الوصف",
-  "Category": "التصنيف",
-  "optional": "اختياري",
-  "adding": "جاري الإضافة...",
-  "cancel": "إلغاء",
-  "Enter title": "أدخل عنوان الكتاب",
-  "Enter author name": "أدخل اسم المؤلف",
-  "Enter book description": "أدخل وصفًا موجزًا للكتاب",
-  "Enter category": "مثل: رواية، علوم، تاريخ",
-  "Enter price": "أدخل السعر بالدولار الأمريكي",
-  "Cover Image URL": "رابط صورة الغلاف"
+  "Author": "المؤلف"
 }

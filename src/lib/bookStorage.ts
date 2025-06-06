@@ -1,14 +1,9 @@
 import { staticBooks } from "@/app/[locale]/books/data";
-import { LocalizedString } from "@/types/book";
+import { Book } from "@/types/book";
 
 const BOOKS_STORAGE_KEY = 'bookLibrary_books';
 
-export interface Book {
-  id: string;
-  title: LocalizedString;
-  author: LocalizedString;
-  price: number;
-}
+
 
 // Generate a unique ID for books
 const generateBookId = (prefix = 'book') => {
@@ -25,14 +20,12 @@ export const getBooks = (): Book[] => {
     books = JSON.parse(booksJson);
   } else {
     // Initialize with static books if no books exist in storage
-    const now = Date.now();
-    books = staticBooks.map((book, index) => ({
+    books = staticBooks.map((book) => ({
       ...book,
       id: generateBookId('static'),
     }));
     localStorage.setItem(BOOKS_STORAGE_KEY, JSON.stringify(books));
   }
-  
   return books;
 };
 
@@ -41,7 +34,6 @@ export const addBook = (bookData: Omit<Book, 'id'>): Book => {
   const newBook: Book = {
     ...bookData,
     id: generateBookId(),
-  
   };
   
   const updatedBooks = [...books, newBook];

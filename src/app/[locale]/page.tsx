@@ -22,7 +22,7 @@ export default function HomePage() {
               <BookCard 
                 key={book.id} 
                 book={book} 
-                className="transition-transform hover:scale-105"
+                className=""
               />
             ))
           ) : (

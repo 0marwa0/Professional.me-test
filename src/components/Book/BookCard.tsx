@@ -2,22 +2,18 @@
 // components/Book/BookCard.tsx
 "use client";
 import { Book } from "../../types/book";
-import { cn } from "@/lib/utils";
 import { useLocale } from "next-intl";
 
 interface Props {
   book: Book;
-  className?: string;
 }
 
-export default function BookCard({ book, className }: Props) {
+export default function BookCard({ book }: Props) {
     const currentLocale = useLocale();
   
   return (
-    <div className={cn(
-      "border border-gray-100 rounded-lg shadow-md p-4 bg-white hover:shadow-lg transition-shadow",
-      className
-    )}>
+    <div className={
+      "transition-transform hover:scale-105 border border-gray-100 rounded-lg shadow-md p-4 bg-white hover:shadow-lg transition-shadow"}>
       
       <h2 className="text-lg font-semibold text-gray-800 line-clamp-2 h-14">
       {book.title[currentLocale as keyof LocalizedString]}

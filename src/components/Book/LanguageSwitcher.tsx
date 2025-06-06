@@ -2,13 +2,11 @@
 
 import { useLocale } from "next-intl";
 import { useRouter, usePathname } from "next/navigation";
-import { Book, Library, Globe, Plus } from "lucide-react";
 
 const LANGUAGE_NAMES: Record<string, string> = {
   en: 'English',
   ar: 'العربية',
   fr: 'Français',
-  // Add more languages as needed
 };
 
 const locales = ["en", "fr", "ar"];
