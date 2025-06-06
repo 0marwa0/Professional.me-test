@@ -1,6 +1,10 @@
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
+import "./globals.css";
+import RTLProvider from "@/components/RTLProvider";
+import { BookProvider } from "@/contexts/BookContext";
+import { Toaster } from 'react-hot-toast';
 
 export default async function LocaleLayout({
   children,
@@ -16,10 +20,13 @@ export default async function LocaleLayout({
   }
 
   return (
-    <html lang={locale}>
-      <body>
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
-      </body>
-    </html>
+    <RTLProvider locale={locale}>
+      <BookProvider>
+        <NextIntlClientProvider>
+          {children}
+          <Toaster position="top-right" />
+        </NextIntlClientProvider>
+      </BookProvider>
+    </RTLProvider>
   );
 }

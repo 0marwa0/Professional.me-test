@@ -1,0 +1,18 @@
+{
+  "title": "Welcome",
+  "addBook": "Add Book",
+  "Title": "Title",
+  "Price": "Price",
+  "Author": "Author",
+  "Description": "Description",
+  "Category": "Category",
+  "optional": "optional",
+  "adding": "Adding...",
+  "cancel": "Cancel",
+  "Enter title": "Enter book title",
+  "Enter author name": "Enter author's name",
+  "Enter book description": "Enter a brief description of the book",
+  "Enter category": "e.g. Fiction, Science, History",
+  "Enter price": "Enter price in USD",
+  "Cover Image URL": "Cover Image URL"
+}

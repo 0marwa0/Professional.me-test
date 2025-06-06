@@ -1,0 +1,18 @@
+{
+  "title": "Bienvenue",
+  "addBook": "Ajouter un livre",
+  "Title": "Titre",
+  "Price": "Prix",
+  "Author": "Auteur",
+  "Description": "Description",
+  "Category": "Catégorie",
+  "optional": "optionnel",
+  "adding": "Ajout en cours...",
+  "cancel": "Annuler",
+  "Enter title": "Entrez le titre du livre",
+  "Enter author name": "Entrez le nom de l'auteur",
+  "Enter book description": "Entrez une brève description du livre",
+  "Enter category": "ex. Roman, Science, Histoire",
+  "Enter price": "Entrez le prix en USD",
+  "Cover Image URL": "URL de l'image de couverture"
+}

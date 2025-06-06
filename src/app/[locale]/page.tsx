@@ -1,27 +1,38 @@
-// Books List Page (main page)
-// app/page.tsx
-import BookCard from "../../components/Book/BookCard";
-import { books } from "./books/data";
-import Link from "next/link";
+'use client';
+
+import BookCard from "@/components/Book/BookCard";
 import { useTranslations } from "next-intl";
-import LanguageSwitcher from "@/components/Book/LanguageSwitcher";
+import { Header } from "@/components/Book/header";
+import { useBooks } from "@/contexts/BookContext";
 
 export default function HomePage() {
   const t = useTranslations();
+  const { allBooks: books } = useBooks();
 
   return (
-    <main className="p-8">
-      <h1 className="text-3xl font-bold mb-6">{t("title")}</h1>
-      <Link href="/books/add">
-        <button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-          {t("addBook")}
-        </button>
-      </Link>
-      <LanguageSwitcher />
-      <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
-        {books.map((book) => (
-          <BookCard key={book.id} book={book} />
-        ))}
+    <main className="min-h-screen bg-gray-50">
+      <Header />
+      <div className="container mx-auto px-4 py-8">
+        <h1 className="text-3xl font-bold text-gray-800 mb-8">
+          {t("title")}
+        </h1>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {books.length > 0 ? (
+            books.map((book) => (
+              <BookCard 
+                key={book.id} 
+                book={book} 
+                className="transition-transform hover:scale-105"
+              />
+            ))
+          ) : (
+            <div className="col-span-full text-center py-12">
+              <p className="text-gray-500 text-lg">
+                No books found. Add your first book!
+              </p>
+            </div>
+          )}
+        </div>
       </div>
     </main>
   );
