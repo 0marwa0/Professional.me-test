@@ -10,9 +10,5 @@ export interface Book {
   id: string;
   title: LocalizedString;
   author: LocalizedString;
-  description: LocalizedString;
-  price: number;
- 
-  coverImage?: string;
-  
+  price: number;  
 }

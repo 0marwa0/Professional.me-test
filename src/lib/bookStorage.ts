@@ -6,11 +6,8 @@ export interface Book {
   id: string;
   title: string;
   author: string;
-  description: string;
   price: number;
-  category: string;
-  coverImage?: string;
-  createdAt: number;
+ 
 }
 
 // Generate a unique ID for books
@@ -32,7 +29,6 @@ export const getBooks = (): Book[] => {
     books = staticBooks.map((book, index) => ({
       ...book,
       id: generateBookId('static'),
-      createdAt: now - (staticBooks.length - index) * 1000 * 60 * 60 * 24 // Spread out creation times
     }));
     localStorage.setItem(BOOKS_STORAGE_KEY, JSON.stringify(books));
   }
@@ -40,12 +36,12 @@ export const getBooks = (): Book[] => {
   return books;
 };
 
-export const addBook = (bookData: Omit<Book, 'id' | 'createdAt'>): Book => {
+export const addBook = (bookData: Omit<Book, 'id'>): Book => {
   const books = getBooks();
   const newBook: Book = {
     ...bookData,
     id: generateBookId(),
-    createdAt: Date.now(),
+  
   };
   
   const updatedBooks = [...books, newBook];
@@ -53,8 +49,4 @@ export const addBook = (bookData: Omit<Book, 'id' | 'createdAt'>): Book => {
   return newBook;
 };
 
-export const deleteBook = (id: string) => {
-  const books = getBooks();
-  const updatedBooks = books.filter(book => book.id !== id);
-  localStorage.setItem(BOOKS_STORAGE_KEY, JSON.stringify(updatedBooks));
-};
+

@@ -14,10 +14,8 @@ import { useBooks } from "@/contexts/BookContext";
 type FormData = {
   title: string;
   author: string;
-  description: string;
   price: string;
-  category: string;
-  coverImage?: string;
+
 };
 
 export default function BookForm() {
@@ -36,10 +34,7 @@ export default function BookForm() {
     defaultValues: {
       title: "",
       author: "",
-      description: "",
       price: "",
-      category: "",
-      coverImage: "",
     },
   });
 
@@ -48,10 +43,7 @@ export default function BookForm() {
       await addBook({
         title: data.title,
         author: data.author,
-        description: data.description,
         price: Number(data.price), // Ensure price is a number
-        category: data.category,
-        coverImage: data.coverImage || '',
       });
       reset();
       router.push("/");
@@ -97,18 +89,6 @@ export default function BookForm() {
         />
         {errors.price && (
           <p className="text-red-500 text-sm">{errors.price.message}</p>
-        )}
-      </div>
-
-      {/* Cover Image URL */}
-      <div>
-        <input
-          {...register("coverImage")}
-          placeholder="Cover Image URL"
-          className="w-full p-2 border rounded bg-transparent"
-        />
-        {errors.coverImage && (
-          <p className="text-red-500 text-sm">{errors.coverImage.message}</p>
         )}
       </div>
 

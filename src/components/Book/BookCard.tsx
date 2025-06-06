@@ -18,13 +18,7 @@ export default function BookCard({ book, className }: Props) {
       "border border-gray-100 rounded-lg shadow-md p-4 bg-white hover:shadow-lg transition-shadow",
       className
     )}>
-      <div className="aspect-[2/3] mb-4 overflow-hidden rounded">
-        <img
-          src={book.coverImage}
-          alt={`${book.title} cover`}
-          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-        />
-      </div>
+      
       <h2 className="text-lg font-semibold text-gray-800 line-clamp-2 h-14">
       {book.title[currentLocale as keyof LocalizedString]}
       </h2>

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { createContext, useContext, useEffect, useState, useMemo } from 'react';
-import { Book, addBook as addBookToStorage, getBooks as getBooksFromStorage, deleteBook as deleteBookFromStorage } from '@/lib/bookStorage';
+import { Book, addBook as addBookToStorage, getBooks as getBooksFromStorage } from '@/lib/bookStorage';
 import { staticBooks } from '@/app/[locale]/books/data';
 import toast from 'react-hot-toast';
 
@@ -9,8 +9,7 @@ type BookContextType = {
   books: Book[];
   userBooks: Book[];
   allBooks: Book[];
-  addBook: (book: Omit<Book, 'id' | 'createdAt'>) => Promise<Book>;
-  deleteBook: (id: string) => void;
+  addBook: (book: Omit<Book, 'id'>) => Promise<Book>;
 };
 
 const BookContext = createContext<BookContextType | undefined>(undefined);
@@ -37,7 +36,7 @@ export function BookProvider({ children }: { children: React.ReactNode }) {
     return [...filteredStaticBooks, ...userBooks];
   }, [userBooks]);
 
-  const addBook = async (book: Omit<Book, 'id' | 'createdAt'>) => {
+  const addBook = async (book: Omit<Book, 'id'>) => {
     try {
       const newBook = addBookToStorage(book);
       setUserBooks(prevBooks => [...prevBooks, newBook]);
@@ -49,37 +48,13 @@ export function BookProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  const deleteBook = (id: string) => {
-    try {
-      // If it's a static book, add it to user's books with a deleted flag
-      if (staticBooks.some(book => book.id === id)) {
-        const staticBook = staticBooks.find(book => book.id === id);
-        if (staticBook) {
-          const deletedBook = {
-            ...staticBook,
-            id: `static-${staticBook.id}`,
-            deleted: true
-          };
-          addBookToStorage(deletedBook);
-          setUserBooks(prev => [...prev, deletedBook]);
-        }
-      } else {
-        // For user's own books, delete normally
-        deleteBookFromStorage(id);
-        setUserBooks(prevBooks => prevBooks.filter(book => book.id !== id));
-      }
-      toast.success('Book removed successfully!');
-    } catch (error) {
-      toast.error('Failed to remove book');
-    }
-  };
+ 
 
   const contextValue = {
     books: allBooks, // For backward compatibility
     userBooks,
     allBooks,
     addBook,
-    deleteBook,
   };
 
   return (

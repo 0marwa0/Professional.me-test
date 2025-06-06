@@ -11,6 +11,5 @@ export const createBookSchema = (locale: "en" | "fr" | "ar") => {
     price: z
       .number({ invalid_type_error: t.priceInvalid })
       .min(0.01, t.priceTooLow),
-    coverImage: z.string().url(t.imageInvalid),
   });
 };
