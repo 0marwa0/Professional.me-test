@@ -3,5 +3,6 @@
   "addBook": "أضف كتاب",
   "Title": "العنوان",
   "Price": "السعر",
-  "Author": "المؤلف"
+  "Author": "المؤلف",
+  "bookLibrary": "مكتبة الكتب"
 }

@@ -3,5 +3,6 @@
   "addBook": "Add Book",
   "Title": "Title",
   "Price": "Price",
-  "Author": "Author"
+  "Author": "Author",
+  "bookLibrary": "BookLibrary"
 }

@@ -3,5 +3,6 @@
   "addBook": "Ajouter un livre",
   "Title": "Titre",
   "Price": "Prix",
-  "Author": "Auteur"
+  "Author": "Auteur",
+  "bookLibrary": "Bibliothèque"
 }

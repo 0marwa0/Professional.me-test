@@ -14,7 +14,7 @@ export const Header: React.FC = () => {
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center space-x-2">
           <Book className="h-6 w-6 text-purple-500" />
-          <h1 className="font-semibold text-lg text-purple-900">BookLibrary</h1>
+          <h1 className="font-semibold text-lg text-purple-900">{t('bookLibrary')}</h1>
         </div>
         <div className="flex items-center gap-3 space-x-3">
           <LanguageSwitcher />

@@ -37,7 +37,12 @@ export default function LanguageSwitcher() {
       <select
         value={currentLocale}
         onChange={handleChange}
-        className="flex border border-transparent items-center px-3 pr-8 bg-white space-x-1.5 text-purple-700 transition-colors py-1.5 rounded-md text-sm font-medium appearance-none"
+        className="flex items-center px-3 pr-8 bg-white space-x-1.5 text-purple-700 transition-colors py-1.5 rounded-md text-sm font-medium appearance-none focus:outline-none focus:ring-0 focus:ring-offset-0 border-0"
+        style={{
+          WebkitAppearance: 'none',
+          MozAppearance: 'none',
+          appearance: 'none',
+        }}
       >
         {locales.map((locale) => (
           <option key={locale} value={locale}>
