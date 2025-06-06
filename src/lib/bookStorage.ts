@@ -1,5 +1,8 @@
+import type { Book } from "@/types/book";
 import { staticBooks } from "@/app/[locale]/books/data";
-import { Book } from "@/types/book";
+
+// Re-export the Book type for other modules
+export type { Book } from "@/types/book";
 
 const BOOKS_STORAGE_KEY = 'bookLibrary_books';
 
