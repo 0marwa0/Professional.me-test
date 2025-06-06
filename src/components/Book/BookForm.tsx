@@ -68,12 +68,14 @@ export default function BookForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+    <div className="max-w-2xl mx-auto">
+     
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
       {/* English Title */}
       <div>
         <input
           {...register("title_en", { required: "English title is required" })}
-          placeholder="Title (English)"
+          placeholder={t('titleInEnglish')}
           className="w-full p-2 border rounded bg-transparent"
         />
         {errors.title_en && (
@@ -85,7 +87,7 @@ export default function BookForm() {
       <div>
         <input
           {...register("title_ar", { required: "Arabic title is required" })}
-          placeholder="العنوان (العربية)"
+          placeholder={t('titleInArabic')}
           className="w-full p-2 border rounded bg-transparent text-right"
           dir="rtl"
         />
@@ -98,7 +100,7 @@ export default function BookForm() {
       <div>
         <input
           {...register("title_fr", { required: "French title is required" })}
-          placeholder="Titre (Français)"
+          placeholder={t('titleInFrench')}
           className="w-full p-2 border rounded bg-transparent"
         />
         {errors.title_fr && (
@@ -110,7 +112,7 @@ export default function BookForm() {
       <div>
         <input
           {...register("author_en", { required: "English author name is required" })}
-          placeholder="Author (English)"
+          placeholder={t('authorInEnglish')}
           className="w-full p-2 border rounded bg-transparent"
         />
         {errors.author_en && (
@@ -122,7 +124,7 @@ export default function BookForm() {
       <div>
         <input
           {...register("author_ar", { required: "Arabic author name is required" })}
-          placeholder="اسم المؤلف (العربية)"
+          placeholder={t('authorInArabic')}
           className="w-full p-2 border rounded bg-transparent text-right"
           dir="rtl"
         />
@@ -135,7 +137,7 @@ export default function BookForm() {
       <div>
         <input
           {...register("author_fr", { required: "French author name is required" })}
-          placeholder="Auteur (Français)"
+          placeholder={t('authorInFrench')}
           className="w-full p-2 border rounded bg-transparent"
         />
         {errors.author_fr && (
@@ -147,7 +149,7 @@ export default function BookForm() {
       <div>
         <input
           {...register("price", { valueAsNumber: true })}
-          placeholder={t("Price")}
+          placeholder={t('price')}
           type="number"
           step="0.01"
           className="w-full p-2 border rounded bg-transparent"
@@ -167,6 +169,7 @@ export default function BookForm() {
       >
         {t('addBook')}
       </button>
-    </form>
+      </form>
+    </div>
   );
 }

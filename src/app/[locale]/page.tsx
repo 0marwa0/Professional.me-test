@@ -1,11 +1,11 @@
 'use client';
 
+import { Header } from "@/components/Book/header";
 import BookCard from "@/components/Book/BookCard";
 import { useTranslations } from "next-intl";
-import { Header } from "@/components/Book/header";
 import { useBooks } from "@/contexts/BookContext";
 
-export default function HomePage() {
+function HomePageClient() {
   const t = useTranslations();
   const { allBooks: books } = useBooks();
 
@@ -19,21 +19,19 @@ export default function HomePage() {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {books.length > 0 ? (
             books.map((book) => (
-              <BookCard 
-                key={book.id} 
-                book={book} 
-                className=""
-              />
+              <BookCard key={book.id} book={book} className="w-full" />
             ))
           ) : (
-            <div className="col-span-full text-center py-12">
-              <p className="text-gray-500 text-lg">
-                No books found. Add your first book!
-              </p>
-            </div>
+            <p className="text-gray-500">
+              {t("noBooks")}
+            </p>
           )}
         </div>
       </div>
     </main>
   );
+}
+
+export default function HomePage() {
+  return <HomePageClient />;
 }
