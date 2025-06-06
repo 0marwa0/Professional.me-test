@@ -116,6 +116,7 @@ npm test
 yarn test
 ```
 
+<<<<<<< HEAD
 ## 🧑‍💻 Contributing
 
 1. Fork the repository
@@ -138,3 +139,6 @@ Distributed under the MIT License. See `LICENSE` for more information.
 Your Name - [@yourtwitter](https://twitter.com/yourtwitter) - your.email@example.com
 
 Project Link: [https://github.com/yourusername/booklibrary](https://github.com/yourusername/booklibrary)
+=======
+
+>>>>>>> 3f87ec3feda8fa84c0a89d86f7fa2914797c13e3
