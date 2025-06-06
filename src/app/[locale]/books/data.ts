@@ -1,8 +1,5 @@
 import { Book } from "../../../types/book";
 
-
-const now = Date.now();
-
 export const staticBooks: Book[] = [
   {
     id: "book_1749194650637_9qkt5hu52",

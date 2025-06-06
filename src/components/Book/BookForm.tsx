@@ -3,14 +3,15 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useTranslations, useLocale } from "next-intl";
 import { createBookSchema } from "../../../schemas/bookSchema";
 import { useBooks } from "@/contexts/BookContext";
+import { Book } from "@/types/book";
+import { z } from "zod";
 
-// Define the form data type that matches our schema
+// Define the form data type for the input form
 type FormData = {
   title_en: string;
   title_ar: string;
@@ -18,7 +19,18 @@ type FormData = {
   author_en: string;
   author_ar: string;
   author_fr: string;
-  price: string;
+  price: string; // Will be converted to number on submit
+};
+
+// Create a separate validation schema for the form
+const createFormSchema = (locale: "en" | "fr" | "ar") => {
+  const baseSchema = createBookSchema(locale);
+  
+  // Convert the schema to accept string price instead of number
+  return z.object({
+    ...baseSchema.shape,
+    price: z.string().min(1, "Price is required"),
+  });
 };
 
 export default function BookForm() {
@@ -33,7 +45,7 @@ export default function BookForm() {
     formState: { errors, isSubmitting },
     reset,
   } = useForm<FormData>({
-    resolver: zodResolver(createBookSchema(locale)) as any,
+    resolver: zodResolver(createFormSchema(locale)),
     defaultValues: {
       title_en: "",
       title_ar: "",
@@ -45,32 +57,38 @@ export default function BookForm() {
     },
   });
 
-  const onSubmit = async (data: FormData) => {
+  const handleFormSubmit = handleSubmit(async (formData) => {
     try {
-      await addBook({
+      // Convert price to number
+      const price = parseFloat(formData.price);
+      
+      // Create new book with proper types
+      const newBook: Omit<Book, 'id'> = {
         title: {
-        en: data.title_en,
-        ar: data.title_ar,
-        fr: data.title_fr
-      },
-      author: {
-        en: data.author_en,
-        ar: data.author_ar,
-        fr: data.author_fr
-      },
-        price: Number(data.price),
-      });
+          en: formData.title_en,
+          ar: formData.title_ar,
+          fr: formData.title_fr,
+        },
+        author: {
+          en: formData.author_en,
+          ar: formData.author_ar,
+          fr: formData.author_fr,
+        },
+        price: isNaN(price) ? 0 : price,
+      };
+
+      await addBook(newBook);
       reset();
       router.push("/");
     } catch (error) {
-      console.error("Failed to add book:", error);
+      console.error("Error adding book:", error);
     }
-  };
+  });
 
   return (
     <div className="max-w-2xl mx-auto">
      
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      <form onSubmit={handleFormSubmit} className="space-y-6 bg-white p-6 rounded-lg shadow-md">
       {/* English Title */}
       <div>
         <input
